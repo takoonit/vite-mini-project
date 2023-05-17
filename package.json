@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@ant-design/charts": "^1.4.2",
+    "@react-buddy/ide-toolbox": "^2.3.1",
     "@react-google-maps/api": "^2.18.1",
     "@types/google.maps": "^3.53.1",
     "dotenv": "^16.0.3",
@@ -19,8 +21,7 @@
     "react-dom": "^18.2.0",
     "react-geocode": "^0.2.3",
     "react-places-autocomplete": "^7.3.0",
-    "recharts": "^2.6.2",
-    "@react-buddy/ide-toolbox": "^2.3.1"
+    "recharts": "^2.6.2"
   },
   "devDependencies": {
     "@types/node": "^20.1.4",
