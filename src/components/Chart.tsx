@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { Line } from '@ant-design/plots';
 
-const Chart: React.FC = ({ rawData: any, ttf, cf, ifVal }: any) => {
+const Chart: React.FC = ({ rawData, ttf, cf, ifVal }: any) => {
   const data: any = rawData.reduce((acc: any, cur: any) => {
     let label = ''
     const y = cur.year;
