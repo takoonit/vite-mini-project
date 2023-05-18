@@ -1,29 +1,37 @@
-import PlacesAutocomplete, {geocodeByAddress, getLatLng,} from 'react-places-autocomplete';
-import React, {useState} from 'react';
-import PropTypes from 'prop-types';
-import {useLoadScript} from '@react-google-maps/api';
-import MapConfigs from '../configs/MapConfigs.tsx';
+import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
+import React, { useState, useCallback } from 'react';
+import {HiOutlineLocationMarker} from 'react-icons/all';
+import {Input} from 'antd';
 
 interface LocationSearchProps {
-    setLocation: (arg: any) => void
+    setLocation: (arg: any) => void,
+    isLoaded: boolean,
+    loadError: Error | undefined
 }
 
-const LocationSearch: React.FC<LocationSearchProps> = ({ setLocation }) => {
+const LocationSearch: React.FC<LocationSearchProps> = ({ setLocation, isLoaded, loadError }) => {
     const [address, setAddress] = useState<string>('');
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const { isLoaded, loadError } = useLoadScript({
-        googleMapsApiKey: MapConfigs.REACT_APP_GOOGLE_MAPS_API_KEY || "",
-        libraries: ['places'],
-    });
 
-    if (loadError) {
-        return (
-            <div className="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3" role="alert">
-                <p className="font-bold">Error</p>
-                <p className="text-sm">Google Maps API key is missing. Please provide the API key.</p>
-            </div>
-        )
-    }
+    const options = {
+        fields: ["place_id", "geometry", "name"],
+        componentRestrictions: { country: "th" },
+        types: ["establishment"],
+    };
+
+    const handleSelect = useCallback(async (value: string) => {
+        setIsLoading(true);
+        try {
+            const results = await geocodeByAddress(value);
+            const latLng = await getLatLng(results[0]);
+            setAddress(value);
+            setLocation(latLng);
+        } catch (error) {
+            console.error('Error occurred in geocoding address: ', error);
+        } finally {
+            setIsLoading(false);
+        }
+    }, [setLocation]);
 
     if (!isLoaded) {
         return (
@@ -33,49 +41,47 @@ const LocationSearch: React.FC<LocationSearchProps> = ({ setLocation }) => {
             </div>
         );
     }
-    const handleSelect = async (value: string) => {
-        setIsLoading(true);
-        try {
-            const results = await geocodeByAddress(value);
-            const latLng = await getLatLng(results[0]);
-            setAddress(value);
-            setLocation(latLng);
-        } catch (error) {
-            console.error('Error occurred in geocoding address: ', error);
-            // You might want to set an error state here and show it to the user
-        } finally {
-            setIsLoading(false);
-        }
-    };
 
     return (
         <PlacesAutocomplete
             value={address}
             onChange={setAddress}
             onSelect={handleSelect}
+            searchOptions={{...options}}
         >
-            {({getInputProps, suggestions, getSuggestionItemProps, loading}) => (
-                <div className="w-full max-w-xs">
-                    <label htmlFor="location-search" className="sr-only">Type location</label>
-                    <input id="location-search" {...getInputProps()}
-                           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
-                    {loading && <div className="text-gray-500">...loading</div>}
-                    <ul className="mt-2">
-                        {suggestions.map((suggestion, index) => (
-                            <li key={index} {...getSuggestionItemProps(suggestion, {className: suggestion.active ? 'bg-blue-200' : ''})}
-                                className="py-1 px-2 hover:bg-blue-200 cursor-pointer">
-                                {suggestion.description}
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            )}
+            {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => {
+                const { ...inputProps } = getInputProps();
+                const inputId = 'location-search-input';
+                return (
+                    <div className="w-full max-w-xs">
+                        <Input
+                            {...inputProps}
+                            id={inputId}
+                            type="text"
+                            placeholder="Location"
+                            autoComplete="on"
+                            allowClear={true}
+                            className="border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded"
+                            disabled={!isLoaded && !loadError}
+                        />
+                        {loading && <div className="text-gray-500">...loading</div>}
+                        <ul className="mt-2 bg-white shadow rounded overflow-hidden">
+                            {suggestions.map((suggestion, index) => {
+                                const { ...suggestionProps } = getSuggestionItemProps(suggestion);
+                                const className = suggestion.active ? 'bg-blue-200' : 'bg-white';
+                                return (
+                                    <li {...suggestionProps} key={index}
+                                        className={`py-1 px-2 hover:bg-blue-200 cursor-pointer ${className}`}>
+                                        {suggestion.description}
+                                    </li>
+                                );
+                            })}
+                        </ul>
+                    </div>
+                );
+            }}
         </PlacesAutocomplete>
     );
-};
-
-LocationSearch.propTypes = {
-    setLocation: PropTypes.func.isRequired
 };
 
 export default LocationSearch;

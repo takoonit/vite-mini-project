@@ -1,16 +1,31 @@
-import React from 'react';
+import {FC} from 'react';
+import {TravelMode} from '../configs/MapConfigs.tsx';
+import {Select} from 'antd';
 
-const TravelModeSelect = ({ setTravelMode }) => {
+interface TravelModeSelectProps {
+    setTravelMode: (mode: TravelMode) => void;
+}
+
+
+const travelModeOptions = Object.entries(TravelMode).map(([key, value]) => ({
+    value,
+    label: key.charAt(0).toUpperCase() + key.slice(1),
+}));
+
+const TravelModeSelect:FC<TravelModeSelectProps> = ({ setTravelMode }) => {
     const handleSelect = (event) => {
-        setTravelMode(event.target.value);
+        const mode = event.target.value;
+        setTravelMode(mode);
     };
 
-    return (
-        <select onChange={handleSelect}>
-            <option value="DRIVING">Car</option>
-            <option value="TRANSIT">Bus</option>
-            <option value="TRAIN">Train</option>
-        </select>
+    return    (
+        <Select onChange={handleSelect}>
+            {travelModeOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                    {option.label}
+                </option>
+            ))}
+        </Select>
     );
 };
 
