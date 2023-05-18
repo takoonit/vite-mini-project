@@ -1,7 +1,5 @@
-import React from 'react';
-
-const TravelModeSelect = ({ setTravelMode }) => {
-    const handleSelect = (event) => {
+const TravelModeSelect = ({ setTravelMode }: any) => {
+    const handleSelect = (event: any) => {
         setTravelMode(event.target.value);
     };
 
