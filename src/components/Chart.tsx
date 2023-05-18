@@ -69,7 +69,7 @@ const Chart: React.FC = ({ rawData, ttf, cf, ifVal }: any) => {
               Convenience Factor (CF) : ${cf}
               Income Factor (IF) : ${ifVal}
 
-              WTCCL = WTCCL / (TTF + CF + IF)
+              WTCCL = Actual Total Cost of Car Loaning / (TTF + CF + IF)
             `
           } else {
             return v
