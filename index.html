@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loaning Car vs Public Transportation</title>
+    <style>
+      #myVideo {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        min-width: 100%; 
+        min-height: 100%;
+        z-index: -1;
+      }
+
+    </style>
+    <script type="module" crossorigin src="/assets/index-e14a38f0.js"></script>
+    <link rel="stylesheet" href="/assets/index-f9578667.css">
+  </head>
+  <body>
+    <video autoplay muted loop id="myVideo">
+      <source src="/Media1.mp4" type="video/mp4">
+    </video>
+    <div id="root"></div>
+    
+    <script>
+      document.getElementById("myVideo").addEventListener('loadeddata', () => {
+        document.getElementById("myVideo").playbackRate = 0.4
+      }, false)
+    </script>
+  </body>
+</html>
