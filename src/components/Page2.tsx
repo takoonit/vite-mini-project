@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import { InputNumber, Select, Slider } from 'antd';
 import { AppContext } from '../contexts';
 import { carModels, carTypes, downOptions, terms } from '../common';

@@ -1,25 +1,25 @@
 
-import { useCallback, useState, createContext } from 'react';
-import { Divider, Steps, Button } from 'antd';
+import { useState } from 'react';
+import { Steps, Button } from 'antd';
 import 'antd/dist/antd.css';
-import LocationSearch from './components/LocationSearch';
+// import LocationSearch from './components/LocationSearch';
 import Result from './components/Result';
 import Page1 from './components/Page1';
 import Page2 from './components/Page2';
 import Page3 from './components/Page3';
 import {AppContext} from './contexts';
 // import LocationSearchInput from './components/LocationSearchInput';
-import Map from './components/Map';
-import TravelModeSelect from './components/TravelModeSelect';
+// import Map from './components/Map';
+// import TravelModeSelect from './components/TravelModeSelect';
 import { percentOptions, carModels, carTypes, downOptions, terms } from './common';
 // import { getDistance } from 'geolib';
 // import {useJsApiLoader} from '@react-google-maps/api';
 // import PlaceResult = google.maps.places.PlaceResult;
 
-const center = {
-    lat: 13.7465337,
-    lng: 100.5391488
-};
+// const center = {
+//     lat: 13.7465337,
+//     lng: 100.5391488
+// };
 
 const App = () => {
     const [factors, setFactors] = useState({
@@ -52,28 +52,28 @@ const App = () => {
     //     libraries: ['places']
     // })
 
-    const [googleMap, setGoogleMap] = useState(null)
-    const [location1, setLocation1] = useState<google.maps.places.PlaceResult>(); // Default location 1
-    const [location2, setLocation2] = useState<google.maps.places.PlaceResult>(); // Default location 2
-    const [travelMode, setTravelMode] = useState('DRIVING'); // Default travel mode
+    // const [googleMap, setGoogleMap] = useState(null)
+    // const [location1, setLocation1] = useState<google.maps.places.PlaceResult>(); // Default location 1
+    // const [location2, setLocation2] = useState<google.maps.places.PlaceResult>(); // Default location 2
+    // const [travelMode, setTravelMode] = useState('DRIVING'); // Default travel mode
 
-    function getRoute(location1: google.maps.places.PlaceResult | undefined, location2: google.maps.places.PlaceResult | undefined) {
+    // function getRoute(location1: google.maps.places.PlaceResult | undefined, location2: google.maps.places.PlaceResult | undefined) {
 
-    }
+    // }
 
     //const distance = getRoute(location1, location2);
 
-    const onLoad = useCallback(function callback(map) {
-        const bounds = new window.google.maps.LatLngBounds(center);
-        map.fitBounds(bounds);
-        map.setZoom(24);
+    // const onLoad = useCallback(function callback(map: any) {
+    //     const bounds = new window.google.maps.LatLngBounds(center);
+    //     map.fitBounds(bounds);
+    //     map.setZoom(24);
 
-        setGoogleMap(map)
-    }, [])
+    //     setGoogleMap(map)
+    // }, [])
 
-    const onUnmount = useCallback(function callback(map) {
-        setGoogleMap(null)
-    }, [])
+    // const onUnmount = useCallback(function callback(map: any) {
+    //     setGoogleMap(null)
+    // }, [])
     const [current, setCurrent] = useState(0);
     const onChange = (value: number) => {
         setCurrent(value);
@@ -103,7 +103,7 @@ const App = () => {
         },
     ]
     return (
-        <div className="flex flex-col w-full min-h-screen bg-gray-200 pt-10 items-center">
+        <div className="flex flex-col w-full min-h-screen pt-10 items-center">
             <div className="mx-auto">
                 <Steps
                     size="small"
@@ -113,7 +113,7 @@ const App = () => {
                     items={items}
                 />
             </div>
-            <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2 w-full md:w-6/12">
+            <div className="bg-opacity-90 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2 w-full md:w-6/12">
                 <AppContext.Provider value={{ factors, setFactors }}>
                     <div id="xxxxx">
                         {/*<LocationSearchInput map = {googleMap} onSelectLocation={setLocation1} />*/}

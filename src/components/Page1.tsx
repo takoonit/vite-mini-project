@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import { InputNumber, Select } from 'antd';
-import Chart from './Chart'
 import { AppContext } from '../contexts';
 import { percentOptions } from '../common';
 

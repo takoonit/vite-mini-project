@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import { InputNumber, Slider } from 'antd';
 import { AppContext } from '../contexts';
-import { percentOptions } from '../common';
 
 const Page3: React.FC = () => {
   const {factors, setFactors} = useContext(AppContext)

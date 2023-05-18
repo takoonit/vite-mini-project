@@ -10,7 +10,7 @@ interface LocationSearchProps {
 
 const LocationSearch: React.FC<LocationSearchProps> = ({ setLocation }) => {
     const [address, setAddress] = useState<string>('');
-    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [_, setIsLoading] = useState<boolean>(false);
     const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: MapConfigs.REACT_APP_GOOGLE_MAPS_API_KEY || "",
         libraries: ['places'],
@@ -61,8 +61,8 @@ const LocationSearch: React.FC<LocationSearchProps> = ({ setLocation }) => {
                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
                     {loading && <div className="text-gray-500">...loading</div>}
                     <ul className="mt-2">
-                        {suggestions.map((suggestion, index) => (
-                            <li key={index} {...getSuggestionItemProps(suggestion, {className: suggestion.active ? 'bg-blue-200' : ''})}
+                        {suggestions.map((suggestion) => (
+                            <li {...getSuggestionItemProps(suggestion, {className: suggestion.active ? 'bg-blue-200' : ''})}
                                 className="py-1 px-2 hover:bg-blue-200 cursor-pointer">
                                 {suggestion.description}
                             </li>

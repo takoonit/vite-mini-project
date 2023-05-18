@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import { Line } from '@ant-design/plots';
 
-const Chart: React.FC = ({ rawData, ttf, cf, ifVal }: any) => {
+const Chart: React.FC<any> = ({ rawData, ttf, cf, ifVal }: any) => {
   const data: any = rawData.reduce((acc: any, cur: any) => {
     let label = ''
     const y = cur.year;
@@ -22,7 +22,7 @@ const Chart: React.FC = ({ rawData, ttf, cf, ifVal }: any) => {
     ]
   }, [])
   console.log(data)
-  const config = {
+  const config: any = {
     data,
     xField: 'year',
     yField: 'value',
@@ -34,7 +34,7 @@ const Chart: React.FC = ({ rawData, ttf, cf, ifVal }: any) => {
     yAxis: {
       visible: false,
       label: {
-        formatter: (v) => `${v} ฿`,
+        formatter: (v: string) => `${v} ฿`,
       },
     },
     color: ({ type }: any) => {
@@ -61,7 +61,7 @@ const Chart: React.FC = ({ rawData, ttf, cf, ifVal }: any) => {
     legend: {
       layout: 'vertical',
       itemName: {
-        formatter: (v) => {
+        formatter: (v: string) => {
           if (v === 'Weighted Total Cost of Car Loaning') {
             return `Weighted Total Cost of Car Loaning (WTCCL) is calculated by
 

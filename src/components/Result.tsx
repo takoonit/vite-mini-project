@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import Chart from './Chart'
 import { AppContext } from '../contexts';
 import {carDetails} from '../common';
@@ -60,7 +60,7 @@ const Result: React.FC = () => {
     longTermCost.push(cost)
   }
   console.log('LongTermCost', longTermCost)
-  const results = []
+  const results: any = []
   for (let i = 0; i < longTermCost.length; i++) {
     const lastIndex = results.length - 1
     const last = results[lastIndex]

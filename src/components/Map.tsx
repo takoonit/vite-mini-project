@@ -1,13 +1,13 @@
-import {DirectionsService, GoogleMap, useLoadScript} from '@react-google-maps/api';
+import {GoogleMap, useLoadScript} from '@react-google-maps/api';
 import {Libraries} from '@react-google-maps/api/dist/utils/make-load-script-url';
 import MapConfigs from '../configs/MapConfigs';
 import {ResponsiveContainer} from 'recharts';
-import LocationSearch from './LocationSearch.tsx';
-import {useState} from 'react';
-import {geocodeByAddress, getLatLng} from 'react-places-autocomplete';
-import PlaceResult = google.maps.places.PlaceResult;
+// import LocationSearch from './LocationSearch.tsx';
+// import {useState} from 'react';
+// import {geocodeByAddress, getLatLng} from 'react-places-autocomplete';
+// import PlaceResult = google.maps.places.PlaceResult;
 
-const directionService = new DirectionsService();
+// const directionService = new DirectionsService();
 const libraries:Libraries = ["places"];
 
 interface MapProps {
