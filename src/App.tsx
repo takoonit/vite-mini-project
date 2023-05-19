@@ -1,17 +1,20 @@
 
 import { useCallback, useState, createContext } from 'react';
 import { Divider, Steps, Button } from 'antd';
-import 'antd/dist/antd.css';
-import LocationSearch from './components/LocationSearch';
+import 'antd/dist/reset.css';
+import LocationSearch from './components/direction/LocationSearch.tsx';
 import Result from './components/Result';
 import Page1 from './components/Page1';
 import Page2 from './components/Page2';
 import Page3 from './components/Page3';
 import {AppContext} from './contexts';
 // import LocationSearchInput from './components/LocationSearchInput';
-import Map from './components/Map';
-import TravelModeSelect from './components/TravelModeSelect';
+import Map from './components/direction/Map.tsx';
+import TravelModeSelect from './components/direction/TravelModeSelect.tsx';
 import { percentOptions, carModels, carTypes, downOptions, terms } from './common';
+import TravelDistanceCalculator from './components/TravelDistanceCalculator.tsx';
+import LocationSearchFree from './components/direction_free/LocationSearchFree.tsx';
+import TravelDistanceCalculatorFree from './components/TravelDistanceCalculatorFree.tsx';
 // import { getDistance } from 'geolib';
 // import {useJsApiLoader} from '@react-google-maps/api';
 // import PlaceResult = google.maps.places.PlaceResult;
@@ -81,7 +84,7 @@ const App = () => {
     const next = () => {
         setCurrent(current + 1);
       };
-    
+
       const prev = () => {
         setCurrent(current - 1);
       };
@@ -122,7 +125,7 @@ const App = () => {
                         <LocationSearch setLocation={setLocation2} />
                         <TravelModeSelect setTravelMode={setTravelMode} />
                         <Map center={center} onLoad={onLoad} onUnMount={onUnmount} /> */}
-                        
+
                         {/*<p>Distance: {distance} meters</p>*/}
                         {/*<p>Travel Mode: {travelMode}</p>*/}
                         {current === 0 && <Page1 />}
@@ -144,7 +147,7 @@ const App = () => {
                     </div>
                 </AppContext.Provider>
             </div>
-
+            <TravelDistanceCalculatorFree />
         </div>
     );
 };

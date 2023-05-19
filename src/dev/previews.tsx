@@ -1,14 +1,14 @@
 import {ComponentPreview, Previews} from '@react-buddy/ide-toolbox';
 import {PaletteTree} from './palette';
-import {Button} from 'antd';
+import TravelDistanceCalculator from '../components/TravelDistanceCalculator.tsx';
 
 
 
 const ComponentPreviews = () => {
     return (
         <Previews palette={<PaletteTree/>}>
-            <ComponentPreview path="/Button">
-                <Button>Button</Button>
+            <ComponentPreview path="/TravelDistanceCalculator">
+                <TravelDistanceCalculator></TravelDistanceCalculator>
             </ComponentPreview>
         </Previews>
     );

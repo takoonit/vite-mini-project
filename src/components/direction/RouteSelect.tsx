@@ -18,8 +18,11 @@ const RouteSelect: FC<RouteSelectProps> = ({ routes, setRoute, setDistance}) => 
         if (route) {
             setRoute(route);
             console.log('Route: ', route);
-            if (route.legs[0].distance)
-                setDistance(route.legs[0].distance.value);
+            let distance = 0;
+            for (let i = 0; i < route.legs.length; i++) {
+                distance += parseFloat(route.legs[i]?.distance?.text);
+            }
+            setDistance(distance);
         }
     };
 
@@ -37,7 +40,8 @@ const RouteSelect: FC<RouteSelectProps> = ({ routes, setRoute, setDistance}) => 
                         onClick={() => handleRouteSelect(route)}
                         style={{ cursor: 'pointer', backgroundColor: selectedRoute === route ? '#e6f7ff' : 'transparent' }}
                     >
-                        Route {index + 1}
+                        <p>Route {index + 1}</p>
+                        {route.fare && <p>Fare: {route.fare.text}</p>}
                     </List.Item>
                 )}
             />

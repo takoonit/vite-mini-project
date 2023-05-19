@@ -12,7 +12,6 @@ interface MapProps {
     } | null,
     travelMode: string,
     setAlternateRoutes: (route: any) => void,
-    setDistance: (distance: number) => void,
 }
 
 const Map: React.FC<MapProps> = ({
@@ -20,7 +19,6 @@ const Map: React.FC<MapProps> = ({
                                      destination,
                                      travelMode,
                                      setAlternateRoutes,
-                                     setDistance,
                                  }) => {
 
     const [error, setError] = useState<any>(null);
@@ -33,15 +31,6 @@ const Map: React.FC<MapProps> = ({
         if (response.status === 'OK') {
             console.log(response);
             setAlternateRoutes(response.routes);
-
-            // Calculate the distance of the route
-            let distance = 0;
-            for (let i = 0; i < response.routes[0].legs.length; i++) {
-                distance += parseFloat(response.routes[0].legs[i].distance.text);
-            }
-            setDistance(distance);
-
-
         } else {
             setError(response);
         }

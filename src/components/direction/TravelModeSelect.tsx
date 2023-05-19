@@ -1,5 +1,5 @@
 import {FC} from 'react';
-import {TravelMode} from '../configs/MapConfigs.tsx';
+import {TravelMode} from '../../configs/MapConfigs.tsx';
 import {Select} from 'antd';
 
 interface TravelModeSelectProps {
@@ -14,8 +14,8 @@ const travelModeOptions = Object.entries(TravelMode).map(([key, value]) => ({
 
 const TravelModeSelect:FC<TravelModeSelectProps> = ({ setTravelMode }) => {
     const handleSelect = (event) => {
-        const mode = event.target.value;
-        setTravelMode(mode);
+        console.log('TravelModeSelect', event);
+        setTravelMode(event);
     };
 
     return    (

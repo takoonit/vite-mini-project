@@ -1,10 +1,10 @@
 import { useCallback, useState } from 'react';
-import LocationSearch from './LocationSearch.tsx';
-import TravelModeSelect from './TravelModeSelect.tsx';
+import LocationSearch from './direction/LocationSearch.tsx';
+import TravelModeSelect from './direction/TravelModeSelect.tsx';
 import MapConfigs from '../configs/MapConfigs.tsx';
 import {useLoadScript} from '@react-google-maps/api';
-import RouteSelect from './RouteSelect.tsx';
-import Map from './Map.tsx';
+import RouteSelect from './direction/RouteSelect.tsx';
+import Map from './direction/Map.tsx';
 import { Button, Space } from 'antd';
 
 const center = {
@@ -39,19 +39,19 @@ const TravelDistanceCalculator = () => {
         }
     }, [origin, destination]);
 
-    return (isLoaded &&
-        <Space wrap id="xxxxx">
+    return ((isLoaded) ?
+        (<Space wrap id="xxxxx">
             <LocationSearch isLoaded={isLoaded} loadError={loadError} setLocation={setOrigin} />
             <LocationSearch isLoaded={isLoaded} loadError={loadError} setLocation={setDestination} />
             <TravelModeSelect setTravelMode={setTravelMode} />
             <Button type="primary" onClick={applyLocation}>Apply</Button>
             <RouteSelect  routes={alternateRoutes ? [...alternateRoutes] : []} setRoute={setRoute}  setDistance={setDistance}/>
-            <Map origin={selectedOrigin} destination={selectedDestination} travelMode={travelMode} setDistance={setDistance} setAlternateRoutes={setAlternateRoutes}/>
+            <Map origin={selectedOrigin} destination={selectedDestination} travelMode={travelMode} setAlternateRoutes={setAlternateRoutes}/>
             {distance && <p>Distance: {distance} meters</p>}
             <p>Travel Mode: {travelMode}</p>
             <p>Origin: {JSON.stringify(origin)}</p>
             <p>Destination: {JSON.stringify(destination)}</p>
-        </Space>
+        </Space>):(<p>Loading...</p>)
     );
 };
 
