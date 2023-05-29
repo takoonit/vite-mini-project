@@ -37,7 +37,7 @@ const Page2: React.FC = () => {
       <div className="-mx-3 md:flex mb-6">
         <div className="md:w-full px-3">
           <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">
-            How would you rate your experience with driving car?
+            How much do you value the convenience of having a car?
           </label>
           <Slider
             min={1}
@@ -92,7 +92,7 @@ const Page2: React.FC = () => {
         </div>
         <div className="md:w-1/2 px-3">
           <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">
-            Typical Distance of your trip?
+            Typical Distance of your trip for LEISURE?
           </label>
           <InputNumber
             className="block w-full bg-grey-lighter text-grey-darker border border-red rounded mb-3"
@@ -109,10 +109,11 @@ const Page2: React.FC = () => {
             Time Spend Using Car
           </label>
           <InputNumber
-            className="block w-full bg-grey-lighter text-grey-darker border border-red rounded px-3 mb-3"
+            className="block w-full bg-grey-lighter text-grey-darker border border-red rounded mb-3"
             type="Number"
             value={factors.timeSpendUsingCar}
             onChange={(v) => setFactors({...factors, timeSpendUsingCar: v})}
+            addonAfter={<span>minutes</span>}
           />
         </div>
       </div>

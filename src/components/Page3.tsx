@@ -9,13 +9,14 @@ const Page3: React.FC = () => {
       <div className="-mx-3 md:flex mb-6">
         <div className="md:w-1/2 px-3 mb-6 md:mb-0">
           <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">
-            Tickets Cost
+            Transportation Cost
           </label>
           <InputNumber
-            className="block w-full bg-grey-lighter text-grey-darker border border-red rounded px-3 mb-3"
+            className="block w-full bg-grey-lighter text-grey-darker border border-red rounded mb-3"
             type="Number"
             value={factors.ticketCost}
             onChange={(v) => setFactors({...factors, ticketCost: v})}
+            addonAfter={<span>baht per month</span>}
           />
         </div>
         <div className="md:w-1/2 px-3">
@@ -27,6 +28,7 @@ const Page3: React.FC = () => {
             type="Number"
             value={factors.extraTravelCost}
             onChange={(v) => setFactors({...factors, extraTravelCost: v})}
+            addonAfter={<span>baht per month</span>}
           />
         </div>
       </div>

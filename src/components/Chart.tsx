@@ -32,7 +32,7 @@ const Chart: React.FC<any> = ({ rawData, ttf, cf, ifVal }: any) => {
       },
     },
     yAxis: {
-      visible: false,
+      visible: true,
       label: {
         formatter: (v: string) => `${v} ฿`,
       },

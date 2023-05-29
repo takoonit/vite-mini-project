@@ -5,10 +5,11 @@ import {carDetails} from '../common';
 
 const calculateFactors = (factors: any) => {
   const recomendedExpense = factors.monthlyIncome * (factors.monthlyExpense / 100)
+  const ttf = Number((((factors.timeSpendUsingPublicTransport - factors.timeSpendUsingCar) / factors.timeSpendUsingPublicTransport)).toFixed(2))
   return {
-    ttf: Number((factors.timeSpendUsingPublicTransport - factors.timeSpendUsingCar) / factors.timeSpendUsingPublicTransport).toFixed(2),
-    cf: Number((factors.convenienceOfLoanignCar - factors.convenienceOfPublicTransport) / 10).toFixed(2),
-    if: Number((factors.monthlyIncome - recomendedExpense) / factors.monthlyIncome).toFixed(2),
+    ttf: ttf,
+    cf: Number((((factors.convenienceOfLoanignCar - factors.convenienceOfPublicTransport) / 10)).toFixed(2)),
+    if: Number((((factors.monthlyIncome - recomendedExpense) / factors.monthlyIncome)).toFixed(2)),
   }
 }
 
@@ -43,7 +44,9 @@ const Result: React.FC = () => {
     const publicTransport = factors.ticketCost + factors.extraTravelCost
     console.log('resultFactors', resultFactors)
     const totalCarCost = down + installment + insurance + gas + factors.parking + maintenance
+    console.log(totalCarCost, resultFactors.cf, resultFactors.if, resultFactors.ttf)
     const weightedCar = Math.round(totalCarCost / (Number(resultFactors.cf) + Number(resultFactors.if) + Number(resultFactors.ttf)))
+    console.log(weightedCar)
     const cost = {
       month: i + 1,
       year: Math.floor(i / 12) + 1,
