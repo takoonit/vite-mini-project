@@ -2,24 +2,12 @@
 import { useState } from 'react';
 import { Steps, Button } from 'antd';
 import 'antd/dist/antd.css';
-// import LocationSearch from './components/LocationSearch';
 import Result from './components/Result';
 import Page1 from './components/Page1';
 import Page2 from './components/Page2';
 import Page3 from './components/Page3';
 import {AppContext} from './contexts';
-// import LocationSearchInput from './components/LocationSearchInput';
-// import Map from './components/Map';
-// import TravelModeSelect from './components/TravelModeSelect';
 import { percentOptions, carModels, carTypes, downOptions, terms } from './common';
-// import { getDistance } from 'geolib';
-// import {useJsApiLoader} from '@react-google-maps/api';
-// import PlaceResult = google.maps.places.PlaceResult;
-
-// const center = {
-//     lat: 13.7465337,
-//     lng: 100.5391488
-// };
 
 const App = () => {
     const [factors, setFactors] = useState({
