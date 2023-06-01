@@ -76,3 +76,7 @@ export const terms = [
   {label: '60', value: 60},
   {label: '72', value: 72},
 ]
+
+export const getCarPrice = (factors: any) => {
+  return carDetails[factors.carModel][factors.carType].price
+}

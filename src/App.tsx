@@ -6,8 +6,9 @@ import Result from './components/Result';
 import Page1 from './components/Page1';
 import Page2 from './components/Page2';
 import Page3 from './components/Page3';
+import Page4 from './components/Page4';
 import {AppContext} from './contexts';
-import { percentOptions, carModels, carTypes, downOptions, terms } from './common';
+import { percentOptions, carModels, carTypes, downOptions, terms, getCarPrice } from './common';
 
 const App = () => {
     const [factors, setFactors] = useState({
@@ -33,6 +34,7 @@ const App = () => {
         convenienceOfPublicTransport: 2,
         carType: carTypes[0].value,
         carDistance: 17,
+        carPrice: getCarPrice({carModel: carModels[0].value, carType: carTypes[0].value})
     });
     // const { isLoaded } = useJsApiLoader({
     //     id: 'google-map-script',
@@ -80,10 +82,14 @@ const App = () => {
         },
         {
             title: 'Step 2',
-            description: 'Car loaning cost estimation',
+            description: 'Car Finance',
         },
         {
             title: 'Step 3',
+            description: 'Car Transportation',
+        },
+        {
+            title: 'Step 4',
             description: 'Public transport',
         },
         {
@@ -116,7 +122,8 @@ const App = () => {
                         {current === 0 && <Page1 />}
                         {current === 1 && <Page2 />}
                         {current === 2 && <Page3 />}
-                        {current === 3 && <Result />}
+                        {current === 3 && <Page4 />}
+                        {current === 4 && <Result />}
                     </div>
                     <div className="mt-10 flex justify-between">
                     {current > 0 ? (

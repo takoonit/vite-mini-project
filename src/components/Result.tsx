@@ -22,7 +22,7 @@ const Result: React.FC = () => {
   const factors = useContext(AppContext).factors
   const longTermCost = []
   const insuranceFactor = carDetails[factors.carModel][factors.carType].insurance;
-  const priceFactor = carDetails[factors.carModel][factors.carType].price
+  const priceFactor = factors.carPrice
   const downPayment = priceFactor * (factors.downPayment/100)
   const maintenanceFactor = carDetails[factors.carModel][factors.carType].maintenance;
   const resultFactors = calculateFactors(factors);
